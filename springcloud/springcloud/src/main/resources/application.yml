@@ -1,0 +1,14 @@
+server:
+    port: 8085
+spring:
+ application:
+      name: CONFIG_SERVER
+      
+ cloud:
+   config:
+     server:
+        git:
+          uri: https://github.com/VishalVs98/microservice-practice.git
+          clone-on-start: true
+  
+   
