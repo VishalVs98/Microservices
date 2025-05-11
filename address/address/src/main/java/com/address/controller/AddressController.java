@@ -14,6 +14,8 @@ import com.address.entity.Address;
 import com.address.exception.NoAddressException;
 import com.address.response.AddressResponse;
 import com.address.service.AddressService;
+
+import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/address")
 public class AddressController {
@@ -28,7 +30,7 @@ public class AddressController {
 	}
 	
 	@PostMapping(consumes="application/json")
-	public ResponseEntity<String> createAddress(@RequestBody Address address) {
+	public ResponseEntity<String> createAddress(@Valid @RequestBody Address address) {
 		String response=addressService.addAddress(address);	
 		return ResponseEntity.ok(response);
 	}
