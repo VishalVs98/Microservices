@@ -1,5 +1,6 @@
 package com.address.controller;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,9 +23,11 @@ public class AddressController {
 
 	@Autowired
 	private AddressService addressService;
-
+    
+	@Cacheable("address")
 	@GetMapping("/{addressId}")
 	public ResponseEntity<AddressResponse> getAddressByEmployeeId(@PathVariable("addressId") int addressId) {
+		  System.out.println("Fetching from DB...");
 		AddressResponse addressResponse = addressService.findAddressByAddressId(addressId);
 		return ResponseEntity.status(HttpStatus.OK).body(addressResponse);
 	}
